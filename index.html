@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bloom by Blossom · Aesthetics Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --pink-primary: #FF6B9D;
+            --pink-light: #FFB6C1;
+            --pink-dark: #FF1493;
+            --pink-bg: #FFF5F7;
+            --pink-soft: #FFE4EC;
+            --white: #FFFFFF;
+            --shadow: 0 8px 30px rgba(255, 107, 157, 0.2);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--pink-bg);
+            color: #2D1B2D;
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 700;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 245, 247, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0.8rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            box-shadow: 0 4px 20px rgba(255, 107, 157, 0.15);
+            border-bottom: 2px solid var(--pink-light);
+        }
+
+        .nav-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--pink-primary);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-brand span {
+            color: var(--pink-dark);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #4A2A4A;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 30px;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--pink-primary);
+            border-color: var(--pink-primary);
+            background: rgba(255, 107, 157, 0.08);
+        }
+
+        /* ===== PAGE SYSTEM ===== */
+        .page {
+            display: none;
+            animation: fadeUp 0.6s ease;
+            min-height: 85vh;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn-primary {
+            background: var(--pink-primary);
+            color: white;
+            padding: 0.9rem 2.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.35);
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 107, 157, 0.45);
+            background: var(--pink-dark);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--pink-primary);
+            padding: 0.9rem 2.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: 2px solid var(--pink-primary);
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: var(--pink-primary);
+            color: white;
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+            padding: 0.9rem 2.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.35);
+            display: inline-block;
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(37, 211, 102, 0.45);
+        }
+
+        .btn-whatsapp-small {
+            background: #25D366;
+            color: white;
+            padding: 0.6rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-whatsapp-small:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.35);
+        }
+
+        /* ===== HOME PAGE ===== */
+        #home {
+            background: linear-gradient(165deg, #FFF5F7 0%, #FFE4EC 100%);
+        }
+
+        #home .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            min-height: 80vh;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            color: var(--pink-dark);
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-content h1 .gold-text {
+            color: var(--pink-primary);
+            display: block;
+        }
+
+        .hero-content .tagline {
+            font-size: 1.6rem;
+            font-family: 'Playfair Display', serif;
+            color: #6A3A6A;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: #5A3A5A;
+            max-width: 500px;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-image .badge {
+            background: white;
+            padding: 3rem 2.5rem;
+            border-radius: 30px;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--pink-light);
+            text-align: center;
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto;
+        }
+
+        .hero-image .badge .logo-placeholder {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--pink-light), var(--pink-primary));
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .hero-image .badge .brand-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--pink-dark);
+        }
+
+        .hero-image .badge .gold-line {
+            width: 60px;
+            height: 4px;
+            background: var(--pink-primary);
+            margin: 0.8rem auto;
+            border-radius: 4px;
+        }
+
+        /* ===== PRODUCT GRID ===== */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .product-card {
+            background: var(--pink-bg);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(255, 107, 157, 0.06);
+            border: 1px solid var(--pink-light);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(255, 107, 157, 0.15);
+        }
+
+        .product-card .product-image {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, var(--pink-light), var(--pink-soft));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--pink-primary);
+        }
+
+        .product-card .product-info {
+            padding: 1.5rem 1.5rem 2rem;
+        }
+
+        .product-card .product-info h3 {
+            font-size: 1.3rem;
+            color: #2D1B2D;
+            margin-bottom: 0.3rem;
+        }
+
+        .product-card .product-info .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--pink-primary);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .product-card .product-info p {
+            color: #6A4A6A;
+            font-size: 0.95rem;
+            margin: 0.5rem 0 1rem;
+        }
+
+        /* ===== SECTION TITLES ===== */
+        .section-title {
+            font-size: 3rem;
+            color: var(--pink-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #8A6A8A;
+            margin-bottom: 3rem;
+        }
+
+        /* ===== GIFT PACKAGES ===== */
+        #gift-packages {
+            background: white;
+        }
+
+        /* ===== SHOP ===== */
+        #shop {
+            background: var(--pink-bg);
+        }
+
+        /* ===== CONTACT ===== */
+        #contact {
+            background: white;
+        }
+
+        #contact h2 {
+            font-size: 3rem;
+            color: var(--pink-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        #contact .subtitle {
+            font-size: 1.2rem;
+            color: #8A6A8A;
+            margin-bottom: 3rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin-top: 1rem;
+        }
+
+        .contact-card {
+            background: var(--pink-bg);
+            padding: 2rem;
+            border-radius: 24px;
+            border: 1px solid var(--pink-light);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .contact-card:hover {
+            box-shadow: var(--shadow);
+            transform: translateY(-4px);
+        }
+
+        .contact-card .icon {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card h4 {
+            font-size: 1.2rem;
+            color: var(--pink-dark);
+            margin-bottom: 0.4rem;
+        }
+
+        .contact-card p,
+        .contact-card a {
+            color: #4A2A4A;
+            text-decoration: none;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .contact-card a:hover {
+            color: var(--pink-primary);
+        }
+
+        .delivery-info {
+            margin-top: 3rem;
+            background: var(--pink-bg);
+            padding: 2rem;
+            border-radius: 24px;
+            border: 2px dashed var(--pink-light);
+            text-align: center;
+        }
+
+        .delivery-info h3 {
+            color: var(--pink-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .delivery-info .fee {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--pink-primary);
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--pink-dark);
+            color: #FFE4EC;
+            text-align: center;
+            padding: 2rem 1.5rem;
+            border-top: 4px solid var(--pink-light);
+        }
+
+        footer .footer-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: white;
+        }
+
+        footer p {
+            margin-top: 0.4rem;
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 968px) {
+            #home .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-image .badge {
+                margin: 0 auto;
+            }
+
+            nav {
+                flex-direction: column;
+                padding: 0.8rem 1.5rem;
+            }
+
+            .nav-links {
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-content h1 .gold-text {
+                display: inline;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 2rem 1.2rem;
+            }
+
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.3rem 0.6rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-content .tagline {
+                font-size: 1.2rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-image .badge .logo-placeholder {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav>
+        <a href="#home" class="nav-brand">Bloom <span>·</span> Blossom</a>
+        <ul class="nav-links">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#gift-packages">Gift Packages</a></li>
+            <li><a href="#shop">Shop</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- ===== HOME PAGE ===== -->
+    <section id="home" class="page active">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Bloom by <span class="gold-text">Blossom</span></h1>
+                <div class="tagline">Aesthetics · Girly Essentials · Gift Packages</div>
+                <p>Your one-stop hub for every girl's aesthetic needs – from gorgeous gift packages to everyday girly essentials. Delivered with love! 🌸</p>
+                <div class="hero-buttons">
+                    <a href="#gift-packages" class="btn-primary">✦ Shop Now</a>
+                    <a href="#contact" class="btn-secondary">Contact Us</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="badge">
+                    <div class="logo-placeholder">🌸</div>
+                    <div class="brand-name">Bloom by Blossom</div>
+                    <div class="gold-line"></div>
+                    <p style="font-size: 0.9rem; color: #8A6A8A;">Your Aesthetic Hub ✨</p>
+                    <p style="font-size: 0.8rem; color: #A88AA8; margin-top: 0.3rem;">💖 Gift Packages · Girly Essentials</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GIFT PACKAGES PAGE ===== -->
+    <section id="gift-packages" class="page">
+        <div class="container">
+            <h2 class="section-title">🎁 Gift Packages</h2>
+            <p class="subtitle">Beautifully curated hampers for every occasion</p>
+            <div class="products-grid">
+
+                <div class="product-card">
+                    <div class="product-image">🎁</div>
+                    <div class="product-info">
+                        <h3>Pink Bliss Hamper</h3>
+                        <div class="price">₦15,000</div>
+                        <p>Luxury gift box with candles, skincare, and accessories. Perfect for birthdays!</p>
+                        <a href="https://wa.me/2349016974059?text=Hi%20Bloom%20by%20Blossom!%20I'd%20like%20to%20order%20the%20Pink%20Bliss%20Hamper%20(₦15,000)" target="_blank" class="btn-whatsapp-small">💬 Order Now</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">🕯️</div>
+                    <div class="product-info">
+                        <h3>Self-Care Candle Box</h3>
+                        <div class="price">₦10,000</div>
+                        <p>Scented candles, bath salts, and a cozy blanket – ultimate relaxation!</p>
+                        <a href="https://wa.me/2349016974059?text=Hi%20Bloom%20by%20Blossom!%20I'd%20like%20to%20order%20the%20Self-Care%20Candle%20Box%20(₦10,000)" target="_blank" class="btn-whatsapp-small">💬 Order Now</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">👑</div>
+                    <div class="product-info">
+                        <h3>Queen's Gift Box</h3>
+                        <div class="price">₦20,000</div>
+                        <p>Premium luxury box with high-end products. For the queen in your life!</p>
+                        <a href="https://wa.me/2349016974059?text=Hi%20Bloom%20by%20Blossom!%20I'd%20like%20to%20order%20the%20Queen's%20Gift%20Box%20(₦20,000)" target="_blank" class="btn-whatsapp-small">💬 Order Now</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">💝</div>
+                    <div class="product-info">
+                        <h3>Love Hamper</h3>
+                        <div class="price">₦12,500</div>
+                        <p>Romantic gift set with chocolates, perfume, and a cute teddy bear!</p>
+                        <a href="https://wa.me/2349016974059?text=Hi%20Bloom%20by%20Blossom!%20I'd%20like%20to%20order%20the%20Love%20Hamper%20(₦12,500)" target="_blank" class="btn-whatsapp-small">💬 Order Now</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SHOP PAGE (Girly Essentials) ===== -->
+    <section id="shop" class="page">
+        <div class="container">
+            <h2 class="section-title">🛍️ Girly Essentials</h2>
+            <p class="subtitle">Everyday must-haves for the modern girl</p>
+            <div class="products-grid">
+
+                <div class="product-card">
+                    <div class="product-image">💄</div>
+                    <div class="product-info">
+                        <h3>Makeup Kit</h3>
+                        <div class="price">₦8,500</div>
+                        <p>Complete makeup set with foundation, lipstick, mascara, and brushes.</p>
+                        <a href="https://wa.me/2349016974059?text=Hi%20Bloom%20by%20Blossom!%20I'd%20like%20to%20order%20the%20Makeup%20Kit%20(₦8,500)" target="_blank" class="btn-whatsapp-small">💬 Order Now</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">💅</div>
+                    <div class="product-info">
+                        <h3>Nail Care Set</h3>
+                        <div class="price">₦5,000</div>
+                        <p>Nail polish set with 6 colors, base coat, and top coat.</p>
+                        <a href="https://wa.me/2349016974059?text=Hi%20Bloom%20by%20Blossom!%20I'd%20like%20to%20order%20the%20Nail%20Care%20Set%20(₦5,000)" target="_blank" class="btn-whatsapp-small">💬 Order Now</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">🌸</div>
+                    <div class="product-info">
+                        <h3>Skincare Essentials</h3>
+                        <div class="price">₦9,500</div>
+                        <p>Facial cleanser, toner, moisturizer, and face masks – glowing skin!</p>
+                        <a href="https://wa.me/2349016974059?text=Hi%20Bloom%20by%20Blossom!%20I'd%20like%20to%20order%20the%20Skincare%20Essentials%20(₦9,500)" target="_blank" class="btn-whatsapp-small">💬 Order Now</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">👛</div>
+                    <div class="product-info">
+                        <h3>Accessory Set</h3>
+                        <div class="price">₦4,500</div>
+                        <p>Hair clips, scrunchies, jewelry, and a cute handbag – all in one!</p>
+                        <a href="https://wa.me/2349016974059?text=Hi%20Bloom%20by%20Blossom!%20I'd%20like%20to%20order%20the%20Accessory%20Set%20(₦4,500)" target="_blank" class="btn-whatsapp-small">💬 Order Now</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">🧴</div>
+                    <div class="product-info">
+                        <h3>Body Care Bundle</h3>
+                        <div class="price">₦6,500</div>
+                        <p>Body butter, shower gel, and body mist – all in matching scents!</p>
+                        <a href="https://wa.me/2349016974059?text=Hi%20Bloom%20by%20Blossom!%20I'd%20like%20to%20order%20the%20Body%20Care%20Bundle%20(₦6,500)" target="_blank" class="btn-whatsapp-small">💬 Order Now</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">✨</div>
+                    <div class="product-info">
+                        <h3>Mini Treat Box</h3>
+                        <div class="price">₦5,500</div>
+                        <p>Small but mighty – cute accessories, chocolates, and a mini candle!</p>
+                        <a href="https://wa.me/2349016974059?text=Hi%20Bloom%20by%20Blossom!%20I'd%20like%20to%20order%20the%20Mini%20Treat%20Box%20(₦5,500)" target="_blank" class="btn-whatsapp-small">💬 Order Now</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT PAGE ===== -->
+    <section id="contact" class="page">
+        <div class="container">
+            <h2>📱 Get in Touch</h2>
+            <p class="subtitle">We'd love to hear from you! 🌸</p>
+            <div class="contact-grid">
+
+                <div class="contact-card">
+                    <div class="icon">📞</div>
+                    <h4>Call Us</h4>
+                    <p><a href="tel:09016974059">090 169 740 59</a></p>
+                    <p><a href="tel:07064233533">070 642 335 33</a></p>
+                </div>
+
+                <div class="contact-card">
+                    <div class="icon">💬</div>
+                    <h4>WhatsApp</h4>
+                    <p>Chat with us directly!</p>
+                    <a href="https://wa.me/2349016974059" target="_blank" class="btn-whatsapp-small" style="margin-top: 0.5rem;">💬 Chat Now</a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="icon">📷</div>
+                    <h4>Instagram</h4>
+                    <p>Follow us for daily inspo!</p>
+                    <a href="#" style="color: var(--pink-primary); font-weight: 700;">@bloombyblossom</a>
+                </div>
+
+            </div>
+
+            <div class="delivery-info">
+                <h3>🚚 Delivery Information</h3>
+                <p>We deliver to all locations!</p>
+                <div class="fee">₦4,500</div>
+                <p style="color: #6A4A6A; margin-top: 0.3rem;">Flat delivery fee anywhere in Nigeria</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-brand">🌸 Bloom by Blossom</div>
+        <p>Aesthetics Hub · Girly Essentials · Gift Packages</p>
+        <p style="font-size: 0.8rem; opacity: 0.6; margin-top: 0.2rem;">💖 Delivering beauty with love</p>
+    </footer>
+
+    <!-- ===== PAGE SWITCHING SCRIPT ===== -->
+    <script>
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const pages = {
+            home: document.getElementById('home'),
+            'gift-packages': document.getElementById('gift-packages'),
+            shop: document.getElementById('shop'),
+            contact: document.getElementById('contact')
+        };
+
+        function switchPage(pageId) {
+            Object.values(pages).forEach(p => p.classList.remove('active'));
+            if (pages[pageId]) {
+                pages[pageId].classList.add('active');
+            }
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + pageId) {
+                    link.classList.add('active');
+                }
+            });
+            if (history.pushState) {
+                history.pushState(null, null, '#' + pageId);
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const href = link.getAttribute('href');
+                const pageId = href.replace('#', '');
+                switchPage(pageId);
+            });
+        });
+
+        document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const href = btn.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    const pageId = href.replace('#', '');
+                    switchPage(pageId);
+                }
+            });
+        });
+
+        window.addEventListener('hashchange', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash && pages[hash]) {
+                switchPage(hash);
+            }
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash && pages[hash]) {
+                switchPage(hash);
+            } else {
+                switchPage('home');
+            }
+        });
+
+        if (!window.location.hash) {
+            switchPage('home');
+        }
+    </script>
+
+</body>
+</html>
